@@ -22,11 +22,11 @@ import java.io.ByteArrayOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 
-public class FirebaseModel{
+public class FirebaseModel {
     FirebaseFirestore db;
     FirebaseStorage storage;
 
-    FirebaseModel(){
+    FirebaseModel() {
         db = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setPersistenceEnabled(false)
@@ -36,37 +36,47 @@ public class FirebaseModel{
 
     }
 
-    public void getAllStudentsSince(Long since, Model.Listener<List<Student>> callback){
+    public void getAllStudentsSince(Long since, Model.Listener<List<Student>> callback) {
         db.collection(Student.COLLECTION)
-                .whereGreaterThanOrEqualTo(Student.LAST_UPDATED, new Timestamp(since,0))
+                .whereGreaterThanOrEqualTo(Student.LAST_UPDATED, new Timestamp(since, 0))
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                List<Student> list = new LinkedList<>();
-                if (task.isSuccessful()){
-                    QuerySnapshot jsonsList = task.getResult();
-                    for (DocumentSnapshot json: jsonsList){
-                        Student st = Student.fromJson(json.getData());
-                        list.add(st);
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        List<Student> list = new LinkedList<>();
+                        if (task.isSuccessful()) {
+                            QuerySnapshot jsonsList = task.getResult();
+                            for (DocumentSnapshot json : jsonsList) {
+                                Student st = Student.fromJson(json.getData());
+                                list.add(st);
+                            }
+                        }
+                        callback.onComplete(list);
                     }
-                }
-                callback.onComplete(list);
-            }
-        });
+                });
     }
 
     public void addStudent(Student st, Model.Listener<Void> listener) {
         db.collection(Student.COLLECTION).document(st.getId()).set(st.toJson())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                listener.onComplete(null);
-            }
-        });
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        listener.onComplete(null);
+                    }
+                });
     }
 
-    void uploadImage(String name, Bitmap bitmap, Model.Listener<String> listener){
+    public void editStudent(Student st, Model.Listener<Void> listener) {
+        db.collection(Student.COLLECTION).document(st.getId()).set(st.toJson())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        listener.onComplete(null);
+                    }
+                });
+    }
+
+    void uploadImage(String name, Bitmap bitmap, Model.Listener<String> listener) {
         StorageReference storageRef = storage.getReference();
         StorageReference imagesRef = storageRef.child("images/" + name + ".jpg");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

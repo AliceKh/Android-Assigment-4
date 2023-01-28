@@ -20,21 +20,27 @@ public class Student {
     @NonNull
     public String id="";
     public String name="";
+    public String birthday="";
+    public String time="";
     public String avatarUrl="";
     public Boolean cb=false;
     public Long lastUpdated;
 
     public Student(){
     }
-    public Student( String id,String name, String avatarUrl, Boolean cb) {
+    public Student( String id,String name, String birthday, String time, String avatarUrl, Boolean cb) {
         this.name = name;
         this.id = id;
+        this.birthday = birthday;
+        this.time = time;
         this.avatarUrl = avatarUrl;
         this.cb = cb;
     }
 
     static final String NAME = "name";
     static final String ID = "id";
+    static final String BIRTHDAY = "01.01.1111";
+    static final String TIME = "11:11";
     static final String AVATAR = "avatar";
     static final String CB = "cb";
     static final String COLLECTION = "students";
@@ -44,12 +50,14 @@ public class Student {
     public static Student fromJson(Map<String,Object> json){
         String id = (String)json.get(ID);
         String name = (String)json.get(NAME);
+        String birthday = (String)json.get(BIRTHDAY);
+        String time = (String)json.get(TIME);
         String avatar = (String)json.get(AVATAR);
         Boolean cb = (Boolean) json.get(CB);
-        Student st = new Student(id,name,avatar,cb);
+        Student st = new Student(id,name,birthday,time,avatar,cb);
         try{
-            Timestamp time = (Timestamp) json.get(LAST_UPDATED);
-            st.setLastUpdated(time.getSeconds());
+            Timestamp currtime = (Timestamp) json.get(LAST_UPDATED);
+            st.setLastUpdated(currtime.getSeconds());
         }catch(Exception e){
 
         }

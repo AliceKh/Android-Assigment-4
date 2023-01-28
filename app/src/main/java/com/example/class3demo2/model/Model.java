@@ -84,6 +84,13 @@ public class Model {
         });
     }
 
+    public void editStudent(Student st, Listener<Void> listener){
+        firebaseModel.addStudent(st,(Void)->{
+            refreshAllStudents();
+            listener.onComplete(null);
+        });
+    }
+
     public void uploadImage(String name, Bitmap bitmap,Listener<String> listener) {
         firebaseModel.uploadImage(name,bitmap,listener);
     }

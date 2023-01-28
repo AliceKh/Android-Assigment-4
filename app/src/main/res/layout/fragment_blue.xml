@@ -4,30 +4,134 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1601FE"
+    android:background="#FFFFFF"
     tools:context=".BlueFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/bluefrag_title_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="@string/date"
-        android:textSize="24sp"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editTimeEt"
+        android:enabled="false"
+        android:layout_width="286dp"
+        android:layout_height="44dp"
+        android:hint="Student birthday time"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editBirthdayEt" />
+
+    <TextView
+        android:id="@+id/studentName3"
+        android:layout_width="81dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="7dp"
+        android:text="Time:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/studentName2" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editBirthdayEt"
+        android:enabled="false"
+        android:layout_width="286dp"
+        android:layout_height="44dp"
+        android:hint="Student birthday"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editIdEt" />
+
+    <TextView
+        android:id="@+id/studentName2"
+        android:layout_width="81dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="7dp"
+        android:text="Birthday:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/studentName" />
+
+    <TextView
+        android:id="@+id/studentName"
+        android:layout_width="81dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="2dp"
+        android:text="ID:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StudentName" />
+
+
+    <ImageView
+        android:id="@+id/avatarImg2"
+        android:layout_width="130dp"
+        android:layout_height="143dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/StudentName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/avatar" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editIdEt"
+        android:enabled="false"
+        android:layout_width="286dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="1dp"
+        android:hint="Student id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editNameEt" />
 
     <Button
         android:id="@+id/bluefrag_back_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        android:text="Button"
+        android:layout_marginTop="24dp"
+        android:text="Edit"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bluefrag_title_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/editTimeEt" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Save"
+        android:visibility="invisible"
+        android:enabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.386"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTimeEt" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp">
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <EditText
+        android:id="@+id/editNameEt"
+        android:enabled="false"
+        android:layout_width="287dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="22dp"
+        android:hint="Student Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avatarImg2" />
+
+    <TextView
+        android:id="@+id/StudentName"
+        android:layout_width="81dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:text="Name:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avatarImg2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
